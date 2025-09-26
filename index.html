@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAYOJA - Cabinet d'Agent d'Affaires Judiciaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#3b82f6',
+                            DEFAULT: '#2563eb',
+                            dark: '#1d4ed8',
+                        },
+                        secondary: {
+                            light: '#f8fafc',
+                            DEFAULT: '#f1f5f9',
+                            dark: '#e2e8f0',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .language-switcher {
+            transition: all 0.3s ease;
+        }
+        
+        .active-lang {
+            background-color: #2563eb;
+            color: white;
+        }
+        
+        .floating-button {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Language Switcher -->
+    <div class="fixed right-4 top-4 z-50 flex rounded-full overflow-hidden shadow-lg">
+        <button id="fr-btn" class="language-switcher active-lang px-4 py-2 bg-blue-600 text-white font-medium">FR</button>
+        <button id="en-btn" class="language-switcher px-4 py-2 bg-white text-blue-600 font-medium">EN</button>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xl mr-3">CJ</div>
+                <h1 class="text-2xl font-bold text-blue-600 hidden md:block">CAYOJA</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#presentation" class="text-gray-700 hover:text-blue-600 transition font-medium" data-i18n="nav.presentation">Présentation</a>
+                <a href="#mission" class="text-gray-700 hover:text-blue-600 transition font-medium" data-i18n="nav.mission">Mission</a>
+                <a href="#services" class="text-gray-700 hover:text-blue-600 transition font-medium" data-i18n="nav.services">Domaines de compétence</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 transition font-medium" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <button class="md:hidden text-blue-600" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
+            <a href="#presentation" class="block py-2 text-gray-700 hover:text-blue-600 transition font-medium" data-i18n="nav.presentation">Présentation</a>
+            <a href="#mission" class="block py-2 text-gray-700 hover:text-blue-600 transition font-medium" data-i18n="nav.mission">Mission</a>
+            <a href="#services" class="block py-2 text-gray-700 hover:text-blue-600 transition font-medium" data-i18n="nav.services">Domaines de compétence</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 transition font-medium" data-i18n="nav.contact">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero text-white py-20 md:py-32 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6" data-i18n="hero.title">Cabinet d'Agent d'Affaires Judiciaire</h1>
+            <p class="text-xl md:text-2xl mb-8" data-i18n="hero.subtitle">Gérer les affaires d'autrui moyennant rémunération avec professionnalisme</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition" data-i18n="hero.contact">Nous contacter</a>
+                <a href="#services" class="bg-white hover:bg-gray-100 text-blue-600 px-8 py-3 rounded-full font-medium transition" data-i18n="hero.services">Nos services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presentation Section -->
+    <section id="presentation" class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-600" data-i18n="presentation.title">PRÉSENTATION</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cabinet CAYOJA" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <p class="text-gray-700 mb-6" data-i18n="presentation.text1">CAYOJA est un cabinet d'Agent d'Affaires Judiciaire chargé de gérer les affaires d'autrui moyennant rémunération.</p>
+                    <p class="text-gray-700 mb-6" data-i18n="presentation.text2">Maître Yao Olivier Jacques Arnaud qui en est le dirigeant est autorisé à exercer ladite profession par l'arrêté n°204/MJDH/DSJRH du 27 juillet 2022. Il est titulaire d'une maîtrise en droit des affaires et d'un DESAG-MBA du CESAG.</p>
+                    <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                        <h3 class="font-bold text-blue-600 mb-2" data-i18n="presentation.values_title">NOS VALEURS</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li data-i18n="presentation.value1">Travail</li>
+                            <li data-i18n="presentation.value2">Intégrité</li>
+                            <li data-i18n="presentation.value3">Confidentialité</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section id="mission" class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-600" data-i18n="mission.title">MISSION</h3>
+                    <p class="text-gray-700" data-i18n="mission.text">Soigner au mieux les intérêts de nos clients avec professionnalisme et dévouement, en mettant à leur disposition notre expertise et notre réseau.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-eye text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-600" data-i18n="vision.title">VISION</h3>
+                    <p class="text-gray-700" data-i18n="vision.text">Devenir un cabinet de référence en Afrique dans le domaine des affaires judiciaires, reconnu pour son excellence, son intégrité et son innovation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-4 text-blue-600" data-i18n="services.title">DOMAINES DE COMPÉTENCE</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-i18n="services.subtitle">Nous offrons une gamme complète de services pour répondre à vos besoins juridiques et administratifs</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300 hover:border-blue-600 border border-transparent">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-building text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800" data-i18n="services.service1.title">Administration de biens</h3>
+                    <p class="text-gray-600" data-i18n="services.service1.desc">Gestion professionnelle de vos biens immobiliers et mobiliers.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300 hover:border-blue-600 border border-transparent">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-hand-holding-usd text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800" data-i18n="services.service2.title">Recouvrement de créances</h3>
+                    <p class="text-gray-600" data-i18n="services.service2.desc">Solutions efficaces pour le recouvrement de vos créances.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300 hover:border-blue-600 border border-transparent">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-people-arrows text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800" data-i18n="services.service3.title">Intermédiation</h3>
+                    <p class="text-gray-600" data-i18n="services.service3.desc">Services d'intermédiaire pour faciliter vos transactions.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300 hover:border-blue-600 border border-transparent">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-heart text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800" data-i18n="services.service4.title">Courtage matrimonial</h3>
+                    <p class="text-gray-600" data-i18n="services.service4.desc">Services professionnels de courtage matrimonial.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300 hover:border-blue-600 border border-transparent">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-file-invoice-dollar text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800" data-i18n="services.service5.title">Déclaration et réclamations fiscales</h3>
+                    <p class="text-gray-600" data-i18n="services.service5.desc">Assistance pour vos déclarations et réclamations fiscales.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300 hover:border-blue-600 border border-transparent">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-handshake text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800" data-i18n="services.service6.title">Représentation dans la médiation</h3>
+                    <p class="text-gray-600" data-i18n="services.service6.desc">Représentation professionnelle lors des médiations.</p>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300 hover:border-blue-600 border border-transparent">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-family text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800" data-i18n="services.service7.title">Généalogie</h3>
+                    <p class="text-gray-600" data-i18n="services.service7.desc">Recherches généalogiques et successions.</p>
+                </div>
+                
+                <!-- Service 8 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300 hover:border-blue-600 border border-transparent">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800" data-i18n="services.service8.title">Formations</h3>
+                    <p class="text-gray-600" data-i18n="services.service8.desc">Formations spécialisées dans divers domaines juridiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-600" data-i18n="testimonials.title">AVIS CLIENTS</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold mr-4">JD</div>
+                        <div>
+                            <h4 class="font-bold">Jean D.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Le cabinet CAYOJA a résolu mon problème de recouvrement de créances en un temps record. Professionnalisme et efficacité remarquables."</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold mr-4">AK</div>
+                        <div>
+                            <h4 class="font-bold">Aminata K.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Excellent accompagnement pour la gestion de mon patrimoine. Je recommande vivement le cabinet CAYOJA pour leur expertise."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold mr-4">PM</div>
+                        <div>
+                            <h4 class="font-bold">Paul M.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Service de médiation exceptionnel qui a permis de résoudre un conflit commercial complexe. Merci à Maître Yao pour son professionnalisme."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 bg-blue-600 text-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12" data-i18n="contact.title">CONTACTEZ-NOUS</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-6" data-i18n="contact.info_title">Informations de contact</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-i18n="contact.website">Site web</h4>
+                                <a href="http://www.cayoja-ci.com" class="hover:underline">www.cayoja-ci.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <a href="mailto:yoja@cayoja-ci.com" class="hover:underline">yoja@cayoja-ci.com</a><br>
+                                <a href="mailto:infos@cayoja-ci.com" class="hover:underline">infos@cayoja-ci.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-i18n="contact.phone">Téléphone</h4>
+                                <p>+225 05.01.38.27.22</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6" data-i18n="contact.form_title">Envoyez-nous un message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block mb-1" data-i18n="contact.form_name">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 rounded text-gray-800">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-1" data-i18n="contact.form_email">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 rounded text-gray-800">
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-1" data-i18n="contact.form_subject">Sujet</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 rounded text-gray-800">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-1" data-i18n="contact.form_message">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 rounded text-gray-800"></textarea>
+                        </div>
+                        <button type="submit" class="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition" data-i18n="contact.form_button">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Contact Button -->
+    <a href="#contact" class="fixed bottom-6 right-6 bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg floating-button hover:bg-blue-700 transition z-30">
+        <i class="fas fa-envelope text-xl"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg mr-3">CJ</div>
+                        <h3 class="text-xl font-bold hidden md:block">CAYOJA</h3>
+                    </div>
+                    <p class="text-gray-400" data-i18n="footer.about">Cabinet d'Agent d'Affaires Judiciaire offrant des services professionnels pour gérer vos affaires.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-i18n="footer.quick_links">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#presentation" class="text-gray-400 hover:text-white transition" data-i18n="nav.presentation">Présentation</a></li>
+                        <li><a href="#mission" class="text-gray-400 hover:text-white transition" data-i18n="nav.mission">Mission</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition" data-i18n="nav.services">Domaines de compétence</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-i18n="footer.legal">Informations légales</h3>
+                    <p class="text-gray-400 mb-2" data-i18n="footer.legal_text">Autorisé par l'arrêté n°204/MJDH/DSJRH du 27 juillet 2022.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p data-i18n="footer.copyright">&copy; 2023 CAYOJA. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Language switcher
+        const frBtn = document.getElementById('fr-btn');
+        const enBtn = document.getElementById('en-btn');
+        
+        frBtn.addEventListener('click', () => {
+            frBtn.classList.add('active-lang');
+            enBtn.classList.remove('active-lang');
+            setLanguage('fr');
+        });
+        
+        enBtn.addEventListener('click', () => {
+            enBtn.classList.add('active-lang');
+            frBtn.classList.remove('active-lang');
+            setLanguage('en');
+        });
+        
+        // Translations
+        const translations = {
+            'fr': {
+                'testimonials.title': 'AVIS CLIENTS',
+                'nav.presentation': 'Présentation',
+                'nav.mission': 'Mission',
+                'nav.services': 'Domaines de compétence',
+                'nav.contact': 'Contact',
+                'hero.title': 'Cabinet d\'Agent d\'Affaires Judiciaire',
+                'hero.subtitle': 'Gérer les affaires d\'autrui moyennant rémunération avec professionnalisme',
+                'hero.contact': 'Nous contacter',
+                'hero.services': 'Nos services',
+                'presentation.title': 'PRÉSENTATION',
+                'presentation.text1': 'CAYOJA est un cabinet d\'Agent d\'Affaires Judiciaire chargé de gérer les affaires d\'autrui moyennant rémunération.',
+                'presentation.text2': 'Maître Yao Olivier Jacques Arnaud qui en est le dirigeant est autorisé à exercer ladite profession par l\'arrêté n°204/MJDH/DSJRH du 27 juillet 2022. Il est titulaire d\'une maîtrise en droit des affaires et d\'un DESAG-MBA du CESAG.',
+                'presentation.values_title': 'NOS VALEURS',
+                'presentation.value1': 'Travail',
+                'presentation.value2': 'Intégrité',
+                'presentation.value3': 'Confidentialité',
+                'mission.title': 'MISSION',
+                'mission.text': 'Soigner au mieux les intérêts de nos clients avec professionnalisme et dévouement, en mettant à leur disposition notre expertise et notre réseau.',
+                'vision.title': 'VISION',
+                'vision.text': 'Devenir un cabinet de référence en Afrique dans le domaine des affaires judiciaires, reconnu pour son excellence, son intégrité et son innovation.',
+                'services.title': 'DOMAINES DE COMPÉTENCE',
+                'services.subtitle': 'Nous offrons une gamme complète de services pour répondre à vos besoins juridiques et administratifs',
+                'services.service1.title': 'Administration de biens',
+                'services.service1.desc': 'Gestion professionnelle de vos biens immobiliers et mobiliers.',
+                'services.service2.title': 'Recouvrement de créances',
+                'services.service2.desc': 'Solutions efficaces pour le recouvrement de vos créances.',
+                'services.service3.title': 'Intermédiation',
+                'services.service3.desc': 'Services d\'intermédiaire pour faciliter vos transactions.',
+                'services.service4.title': 'Courtage matrimonial',
+                'services.service4.desc': 'Services professionnels de courtage matrimonial.',
+                'services.service5.title': 'Déclaration et réclamations fiscales',
+                'services.service5.desc': 'Assistance pour vos déclarations et réclamations fiscales.',
+                'services.service6.title': 'Représentation dans la médiation',
+                'services.service6.desc': 'Représentation professionnelle lors des médiations.',
+                'services.service7.title': 'Généalogie',
+                'services.service7.desc': 'Recherches généalogiques et successions.',
+                'services.service8.title': 'Formations',
+                'services.service8.desc': 'Formations spécialisées dans divers domaines juridiques.',
+                'contact.title': 'CONTACTEZ-NOUS',
+                'contact.info_title': 'Informations de contact',
+                'contact.website': 'Site web',
+                'contact.phone': 'Téléphone',
+                'contact.form_title': 'Envoyez-nous un message',
+                'contact.form_name': 'Nom complet',
+                'contact.form_email': 'Email',
+                'contact.form_subject': 'Sujet',
+                'contact.form_message': 'Message',
+                'contact.form_button': 'Envoyer le message',
+                'footer.about': 'Cabinet d\'Agent d\'Affaires Judiciaire offrant des services professionnels pour gérer vos affaires.',
+                'footer.quick_links': 'Liens rapides',
+                'footer.legal': 'Informations légales',
+                'footer.legal_text': 'Autorisé par l\'arrêté n°204/MJDH/DSJRH du 27 juillet 2022.',
+                'footer.copyright': '© 2023 CAYOJA. Tous droits réservés.'
+            },
+            'en': {
+                'testimonials.title': 'CLIENT TESTIMONIALS',
+                'nav.presentation': 'Presentation',
+                'nav.mission': 'Mission',
+                'nav.services': 'Areas of Expertise',
+                'nav.contact': 'Contact',
+                'hero.title': 'Judicial Business Agent Office',
+                'hero.subtitle': 'Managing others\' affairs for remuneration with professionalism',
+                'hero.contact': 'Contact Us',
+                'hero.services': 'Our Services',
+                'presentation.title': 'PRESENTATION',
+                'presentation.text1': 'CAYOJA is a Judicial Business Agent Office responsible for managing the affairs of others for remuneration.',
+                'presentation.text2': 'Master Yao Olivier Jacques Arnaud, who is the director, is authorized to practice said profession by decree No. 204/MJDH/DSJRH of July 27, 2022. He holds a Master\'s degree in business law and a DESAG-MBA from CESAG.',
+                'presentation.values_title': 'OUR VALUES',
+                'presentation.value1': 'Work',
+                'presentation.value2': 'Integrity',
+                'presentation.value3': 'Confidentiality',
+                'mission.title': 'MISSION',
+                'mission.text': 'To best serve the interests of our clients with professionalism and dedication, providing them with our expertise and network.',
+                'vision.title': 'VISION',
+                'vision.text': 'To become a reference firm in Africa in the field of judicial affairs, recognized for its excellence, integrity and innovation.',
+                'services.title': 'AREAS OF EXPERTISE',
+                'services.subtitle': 'We offer a full range of services to meet your legal and administrative needs',
+                'services.service1.title': 'Property Administration',
+                'services.service1.desc': 'Professional management of your real estate and movable property.',
+                'services.service2.title': 'Debt Collection',
+                'services.service2.desc': 'Effective solutions for collecting your debts.',
+                'services.service3.title': 'Intermediation',
+                'services.service3.desc': 'Intermediary services to facilitate your transactions.',
+                'services.service4.title': 'Matrimonial Brokerage',
+                'services.service4.desc': 'Professional matrimonial brokerage services.',
+                'services.service5.title': 'Tax Declarations and Claims',
+                'services.service5.desc': 'Assistance for your tax declarations and claims.',
+                'services.service6.title': 'Representation in Mediation',
+                'services.service6.desc': 'Professional representation during mediations.',
+                'services.service7.title': 'Genealogy',
+                'services.service7.desc': 'Genealogical research and successions.',
+                'services.service8.title': 'Training',
+                'services.service8.desc': 'Specialized training in various legal fields.',
+                'contact.title': 'CONTACT US',
+                'contact.info_title': 'Contact Information',
+                'contact.website': 'Website',
+                'contact.phone': 'Phone',
+                'contact.form_title': 'Send us a message',
+                'contact.form_name': 'Full Name',
+                'contact.form_email': 'Email',
+                'contact.form_subject': 'Subject',
+                'contact.form_message': 'Message',
+                'contact.form_button': 'Send Message',
+                'footer.about': 'Judicial Business Agent Office offering professional services to manage your affairs.',
+                'footer.quick_links': 'Quick Links',
+                'footer.legal': 'Legal Information',
+                'footer.legal_text': 'Authorized by decree No. 204/MJDH/DSJRH of July 27, 2022.',
+                'footer.copyright': '© 2023 CAYOJA. All rights reserved.'
+            }
+        };
+        
+        function setLanguage(language) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[language][key]) {
+                    element.textContent = translations[language][key];
+                }
+            });
+        }
+        
+        // Initialize with French
+        setLanguage('fr');
+    </script>
+</body>
+</html>
